@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^5.3.0",
     "mineflayer": "^4.22.0",
     "mineflayer-pathfinder": "^2.4.5",
     "prismarine-viewer": "^1.28.0",
