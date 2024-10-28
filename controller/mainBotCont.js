@@ -1,5 +1,4 @@
 const Commands = require('./enums/commands');
-
 let bot, views, modelEntry;
 
 function init({ bot: botInstance, views: viewObjects, modelEntry: model }) {
@@ -7,13 +6,15 @@ function init({ bot: botInstance, views: viewObjects, modelEntry: model }) {
   views = viewObjects;
   modelEntry = model;
 
-  views.messagePrinter.printMessage(bot, 'Bot is ready to receive commands.');
+  // Print a welcome message and navigate to home on bot spawn
+  views.messagePrinter.printWelcome(bot);
+  modelEntry.navigation.navigateToHome(bot);
 }
 
 function handleCommand(command, args) {
   switch (command) {
     case Commands.NAVIGATE_HOME:
-      modelEntry.navigation.navigateHome(bot);
+      modelEntry.navigation.navigateToHome(bot);
       break;
     case Commands.COLLECT_RESOURCE:
       modelEntry.resourceCollector.collectResource(bot, args[0]);
@@ -23,7 +24,7 @@ function handleCommand(command, args) {
       break;
     // Additional cases for other commands
     default:
-      views.messagePrinter.printMessage(bot, "I don't understand that command.");
+      views.messagePrinter.printError(bot, "I don't understand that command.");
   }
 }
 

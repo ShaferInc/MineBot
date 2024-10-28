@@ -1,20 +1,18 @@
 const mineflayer = require('mineflayer');
 const config = require('./config');
 
-const mainController = require('./mainBotCont');
+const mainBotCont = require('./mainBotCont');
 const commandInput = require('./views/commandInput');
 const messagePrinter = require('./views/messagePrinter');
-const modelEntry = require('./models/modelEntry');  // Entry point to the model
+const modelEntry = require('./models/modelEntry');
 
-// Create the bot instance
 const bot = mineflayer.createBot(config.server);
 
-// On bot spawn, initialize controllers and views
 bot.once('spawn', () => {
   console.log('Bot has spawned');
 
-  // Initialize mainController, passing in bot, views, and model entry point
-  mainController.init({
+  // Initialize mainBotCont with bot, views, and model entry
+  mainBotCont.init({
     bot,
     views: {
       commandInput,
@@ -23,6 +21,9 @@ bot.once('spawn', () => {
     modelEntry
   });
 
-  // Set up command listener in the commandInput view
-  commandInput.listenForCommands(bot, mainController.handleCommand);
+  // Initialize Prismarine Viewer on spawn
+  viewer(bot, { firstPerson: true, port: 3007 }); // Open http://localhost:3007 to view
+
+  // Set up command listener
+  commandInput.listenForCommands(bot, mainBotCont.handleCommand);
 });
