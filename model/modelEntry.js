@@ -9,5 +9,6 @@ module.exports = {
   resourceCollector,
   farmManager,
   builder,
-  survivalManager
+  survivalManager,
+  stripMine
 };

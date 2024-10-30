@@ -84,6 +84,16 @@ function printAIResponse(bot, response) {
   print(bot, message);
 }
 
+function printLowSuppliesMessage(bot) {
+  bot.chat("Supplies are low. Returning to the entrance.");
+  console.log("Bot running low on supplies.");
+}
+
+function printLavaFound(bot, branch) {
+  bot.chat(`Encountered lava in ${branch ? "a branch" : "the main tunnel"}. Abandoning branch.`);
+  console.log("Lava detected. Bot notifying user and stopping.");
+}
+
 module.exports = {
   printWelcome,
   printArrival,
@@ -97,5 +107,7 @@ module.exports = {
   printFollowing,
   printEating,
   printRequestAcknowledgment,
+  printLowSuppliesMessage,
+  printLavaFound,
   printAIResponse
 };

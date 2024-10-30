@@ -16,6 +16,10 @@ function handleCommand(command, args) {
     case Commands.NAVIGATE_HOME:
       modelEntry.navigation.navigateToHome(bot);
       break;
+    case Commands.STRIP_MINE:
+      modelEntry.stripMine.navigateToStripMine(bot);
+      modelEntry.stripMine.startMiningMainTunnel(bot);
+      break;
     case Commands.COLLECT_RESOURCE:
       modelEntry.resourceCollector.collectResource(bot, args[0]);
       break;
